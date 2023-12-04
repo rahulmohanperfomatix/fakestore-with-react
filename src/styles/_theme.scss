@@ -1,0 +1,45 @@
+// Light mode variables
+$light-theme: (
+  primary-color: #6C63FF,
+  secondary-color: #FFAFCC,
+  accent-color: #FFD700,
+  background-color: #FFFFFF,
+  text-color: #333333,
+  primary-color-dark: #5b56e0,  // Darker shade of #6C63FF
+  secondary-color-dark: #e69fb9,  // Darker shade of #FFAFCC
+  accent-color-dark: #e6b800,  // Darker shade of #FFD700
+
+  input-border: #ccc,
+  input-hover-border: #9A8CFF,
+  input-focus-border: #6C63FF,
+  input-background: #fff,
+  input-text: #333,
+  input-placeholder: #aaa,
+  input-valid: #28a745,
+  input-invalid: #dc3545,
+  input-disabled-background: #f5f5f5,
+  input-disabled-text: #999,
+);
+
+// Dark mode variables
+$dark-theme: (
+  primary-color: #9A8CFF,
+  secondary-color: #FFC8DD,
+  accent-color: #FFEA00,
+  background-color: #121212,
+  text-color: #E0E0E0,
+  primary-color-light: #a89eff,  // Lighter shade of #9A8CFF
+  secondary-color-light: #ffd1e3,  // Lighter shade of #FFC8DD
+  accent-color-light: #fff200,  // Lighter shade of #FFEA00
+
+  input-border: #555,
+  input-hover-border: #9A8CFF,
+  input-focus-border: #6C63FF,
+  input-background: #333,
+  input-text: #fff,
+  input-placeholder: #bbb,
+  input-valid: #28a745,
+  input-invalid: #dc3545,
+  input-disabled-background: #444,
+  input-disabled-text: #aaa,
+);
