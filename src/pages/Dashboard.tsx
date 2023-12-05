@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+
+import Navbar from "@src/layouts/Navbar";
+import Sidebar from "@src/layouts/Sidebar";
 
 const DashboardPage = () => {
-	return (<div className={"container"}>DashboardPage</div>);
+	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+	return (
+		<div>
+			<Navbar toggleSidebar={toggleSidebar} isDark={false}/>
+			<Sidebar isOpen={sidebarOpen} isDark={false}/>
+		</div>
+	);
 };
 
 export default DashboardPage;
