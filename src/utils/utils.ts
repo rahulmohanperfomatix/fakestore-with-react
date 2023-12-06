@@ -46,3 +46,18 @@ export const getFormErrors = (type:string, inputName:string) => {
 		return "";
 	}
 };
+
+export const verifyAuthentication = () => {
+	const authDetailsString = getItem("auth_details");
+
+	if(!authDetailsString){
+		return false;
+	}
+
+	try {
+		const authDetails = JSON.parse(authDetailsString);
+		return !!authDetails?.token;	
+	} catch (error) {
+		return false;
+	}
+};

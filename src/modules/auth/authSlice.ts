@@ -24,6 +24,7 @@ const authSlice = createSlice({
 	name: "authSlice",
 	initialState,
 	reducers: {
+		clearState: () => initialState,
 		logout: (state) => {
 			state.authDetailsAfterLogin = {
 				token: "",
