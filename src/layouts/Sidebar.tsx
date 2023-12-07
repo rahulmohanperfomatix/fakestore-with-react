@@ -2,6 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "@src/styles/theme";
+import { useNavigate } from "react-router-dom";
 
 type SidebarType = {
     isOpen: boolean;
@@ -37,10 +38,15 @@ const SidebarStyled = styled.div<{isOpen: boolean, isDark: boolean}>`
 `;
 
 const Sidebar: React.FC<SidebarType> = ({isOpen, isDark}) => {
+	const navigate = useNavigate();
+
+	const handleNavigation = (path: string) => {
+		navigate(path);
+	};
 	return (
 		<SidebarStyled isOpen={isOpen} isDark={isDark}>
 			<ul>
-				<li>Products</li>
+				<li onClick={() => handleNavigation("/dashboard/products")}>Products</li>
 				<li>Categories</li>
 			</ul>
 		</SidebarStyled>
