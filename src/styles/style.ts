@@ -1,5 +1,6 @@
 import styled, { css, CSSProp } from "styled-components";
 import { lightTheme } from "./theme";
+import { HTMLAttributes } from "react";
 
 type Sizes = {
   [key: string]: number;
@@ -31,19 +32,30 @@ const media: Media = Object.keys(sizes).reduce((acc: Media, label: string) => {
 
 export { sizes, media };
 
-export const Rol = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px; // Negate the padding on the columns
-  margin-left: -15px; // to ensure proper alignment and spacing
+  margin-right: -15px;
+  margin-left: -15px;
+  max-width: 100%;
 `;
 
-export const Col = styled.div<Sizes>`
+export type ColType = HTMLAttributes<HTMLDivElement> & {
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+};
+
+export const Col = styled.div<ColType>`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+
+  flex: 0 0 100%;
+  max-width: 100%;
 
   ${(props) =>
 		props.sm &&
@@ -83,7 +95,7 @@ export const Box = styled.div<BoxProps>`
 export type CardProps = {
     children: React.ReactNode,
     isDark: boolean,
-    variant?: "default" | "primary",
+    variant?: "default" | "primary" | "secondary",
     className?: string,
     height?: number,
 }
@@ -110,6 +122,56 @@ const variantStyles = (variant: CardProps["variant"]) => {
 	switch (variant) {
 	case "primary":
 		return css`background-color: ${lightTheme.primaryColor}; color: white;`;
+	case "secondary":
+		return css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    color: #333;
+
+    .product-image {
+        width: auto;
+        height: 150px !important;
+        object-fit: cover;
+    }
+
+    .product-title {
+      height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 20px; 
+      margin-top: 10px;
+      font-weight: 600;
+    }    
+
+    .product-price {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        font-weight: 600;
+    }
+
+    .action-button {
+        background-color: ${lightTheme.primaryColor};
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken(${lightTheme.primaryColor}, 10%);
+        }
+    }
+    `;
 	default:
 		return css``;
 	}

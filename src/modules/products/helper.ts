@@ -3,7 +3,7 @@ import { handleAxiosError } from "@src/api/apiUtils";
 import instance from "@src/api/axios";
 import { ApiEndpoints } from "@src/enums/apiEndpoints";
 import { setLoading } from "../shared/ui/uiSlice";
-
+ 
 export const fetchProductsList = createAsyncThunk(
 	ApiEndpoints.PRODUCTS,
 	async (_, { dispatch, rejectWithValue }) => {
