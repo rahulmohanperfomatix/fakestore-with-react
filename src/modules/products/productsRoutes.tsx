@@ -6,6 +6,10 @@ const ProductsList = lazy(
 
 const ProductsRoutes = () => [
 	{
+		path: "",
+		element: <ProductsList />
+	},
+	{
 		path: "products",
 		element: <ProductsList />
 	}

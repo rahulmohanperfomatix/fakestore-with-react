@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarType> = ({ isOpen, isDark }) => {
 			<ul>
 				<li
 					className={`nav-item ${
-						activePath === "/dashboard/products" ? "active" : ""
+						(activePath === "/dashboard/products" || activePath === "/dashboard") ? "active" : ""
 					}`}
 					onClick={() => handleNavigation("/dashboard/products")}
 				>
