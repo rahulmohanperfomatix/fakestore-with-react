@@ -1,5 +1,5 @@
 import styled, { css, CSSProp } from "styled-components";
-import { lightTheme } from "./theme";
+import { darkTheme, lightTheme } from "./theme";
 import { HTMLAttributes } from "react";
 
 type Sizes = {
@@ -176,3 +176,28 @@ const variantStyles = (variant: CardProps["variant"]) => {
 		return css``;
 	}
 };
+
+export type ChipsProps = {
+  children: React.ReactNode,
+  variant: "default",
+  isDark: boolean,
+}
+
+const variantChipStyles = (variant: ChipsProps["variant"], isDark: boolean) => {
+	switch(variant) {
+	case "default": 
+		return css`
+      background-color: ${isDark ? darkTheme.primaryColor : lightTheme.primaryColor};
+      color: ${isDark ? darkTheme.white : lightTheme.white};
+    `;
+	}
+};
+
+export const StyledChip = styled.div<{$variant: ChipsProps["variant"], $isDark: boolean}>`
+  padding: 4px 10px;
+  border-radius: 25px;
+  display: inline-block;
+  font-size: 0.875rem;
+  margin: 5px;
+  ${({ $variant, $isDark }) => variantChipStyles($variant || "default", $isDark)}
+`;

@@ -5,7 +5,7 @@ import { fetchProductsList } from "../helper";
 import { AppDispatch, RootState } from "@src/store";
 import { Product as ProductType } from "../productsModel";
 import Product from "../components/Product";
-import { Col, Row } from "@src/styles/style";
+import { Col, Row, StyledChip } from "@src/styles/style";
 
 const ProductList = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +17,8 @@ const ProductList = () => {
 		dispatch(fetchProductsList());
 	}, []);
 	return (
-		<div className="mx-100">
+		<div className="mw-100 mt-10">
+			<div className="flex align-items-center ml-5"><h5>Filter By: </h5><StyledChip $variant="default" $isDark={false}>Test</StyledChip></div>
 			{productList && productList?.length > 0 && (
 				<Row>
 					{productList.map((product) => (

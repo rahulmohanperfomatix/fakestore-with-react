@@ -24,11 +24,16 @@ const DashboardPage = () => {
 
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
+
+	const mainContentStyle = {
+		marginLeft: sidebarOpen ? "200px" : "0px"
+	};
+
 	return (
 		<div>
 			<Navbar toggleSidebar={toggleSidebar} isDark={false}/>
 			<Sidebar isOpen={sidebarOpen} isDark={false}/>
-			<main className="main-content">
+			<main className="main-content" style={mainContentStyle}>
 				{productRoutes}
 			</main>
 		</div>
