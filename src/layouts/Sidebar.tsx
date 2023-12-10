@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "@src/styles/theme";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type SidebarType = {
   isOpen: boolean;

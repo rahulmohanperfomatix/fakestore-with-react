@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "./productsModel";
-import { fetchProductsList } from "./helper";
+import { fetchCategories, fetchProductsList } from "./helper";
+import { ErrorCollection, ErrorIdentifier } from "@src/models/commonModels";
 
 interface ProductsState {
     productsList: Product[] | null,
-    error: string
+	categories: string[] | null,
+    error: ErrorCollection | null,
 }
 
 export const initialState: ProductsState = {
 	productsList: null,
-	error: ""
+	categories: null,
+	error: null
 };
 
 const productsSlice = createSlice({
@@ -21,8 +24,18 @@ const productsSlice = createSlice({
 	extraReducers: (builder) => {
 		builder.addCase(fetchProductsList.fulfilled, (_state, _action) => {
 			_state.productsList = _action.payload;
-		}).addCase(fetchProductsList.rejected, (_state) => {
-			_state.error = "Something went wrong";
+		}).addCase(fetchProductsList.rejected, (_state, _action) => {
+			_state.error = [
+				...(_state.error || []),
+				{ key: ErrorIdentifier.FAILED_FETCH_PRODUCT_LIST, message: _action.payload?.message || "Failed to fetch products" }
+			];
+		}).addCase(fetchCategories.fulfilled, (_state, _action) => {
+			_state.categories = _action.payload; 
+		}).addCase(fetchCategories.rejected, (_state, _action) => {
+			_state.error = [
+				...(_state.error || []),
+				{ key: ErrorIdentifier.FAILED_FETCH_PRODUCT_LIST, message: _action.payload?.message || "Failed to fetch categories" }
+			];
 		});
 	},
 });

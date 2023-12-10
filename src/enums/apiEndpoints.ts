@@ -1,4 +1,5 @@
 export enum ApiEndpoints {
     LOGIN = "/auth/login",  
-    PRODUCTS = "/products"
+    PRODUCTS = "/products",
+    CATEGORIES = "/categories"
 }
