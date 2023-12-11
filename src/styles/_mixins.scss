@@ -1,0 +1,93 @@
+@mixin theme-colors($theme) {
+    $primary-color: map-get($theme, primary-color);
+    $secondary-color: map-get($theme, secondary-color);
+    $background-color: map-get($theme, background-color);
+    $text-color: map-get($theme, text-color);
+    $accent-color: map-get($theme, accent-color);
+
+    $input-border: map-get($theme, input-border);
+    $input-hover-border: map-get($theme, input-hover-border);
+    $input-focus-border: map-get($theme, input-focus-border);
+    $input-background: map-get($theme, input-background);
+    $input-text: map-get($theme, input-text);
+    $input-placeholder: map-get($theme, input-placeholder);
+    $input-valid: map-get($theme, input-valid);
+    $input-invalid: map-get($theme, input-invalid);
+    $input-disabled-background: map-get($theme, input-disabled-background);
+    $input-disabled-text: map-get($theme, input-disabled-text);
+
+    body {
+        background-color: $background-color;
+        color: $text-color;
+    }
+
+    a {
+        color: $accent-color;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    textarea {
+        border: 1px solid $input-border;
+        background-color: $input-background;
+        color: $input-text;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1.5;
+        width: 100%;
+
+        &:focus {
+            border: 0px;
+            box-shadow: 0 0 0 2px rgba($input-focus-border, 0.25);
+        }
+
+        &:hover {
+            border-color: $input-hover-border;
+        }
+
+        &:disabled {
+            background-color: $input-disabled-background;
+            color: $input-disabled-text;
+        }
+
+        &::placeholder {
+            color: $input-placeholder;
+        }
+
+        &:valid {
+            border-color: $input-valid;
+        }
+
+        &:invalid {
+            border-color: $input-invalid;
+        }
+    }
+
+    select {
+        border: 1px solid $input-border;
+        background-color: $input-background;
+        color: $input-text;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1.5;
+        width: 100%;
+        
+        option {
+            background-color: $input-background;
+            color: $input-placeholder;
+
+            &:disabled {
+                background-color: $input-disabled-background;
+                color: $input-disabled-text;
+            }
+        }
+    }
+    .error-text{
+        color: $input-invalid;
+        min-height: 25px;
+    }
+}
