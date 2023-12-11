@@ -3,6 +3,7 @@
 export const lightTheme = {
 	primaryColor: "#6C63FF",
 	secondaryColor: "#FFAFCC",
+	secondaryLightColor: "rgba(255, 200, 221, 0.3)",
 	accentColor: "#FFD700",
 	backgroundColor: "#FFFFFF",
 	textColor: "#333333",
@@ -26,6 +27,7 @@ export const lightTheme = {
 export const darkTheme = {
 	primaryColor: "#9A8CFF",
 	secondaryColor: "#FFC8DD",
+	secondaryLightColor: "rgba (255, 175, 204, 0.3)",
 	accentColor: "#FFEA00",
 	backgroundColor: "#121212",
 	textColor: "#E0E0E0",

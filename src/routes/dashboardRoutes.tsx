@@ -1,12 +1,24 @@
-import React from "react";
+// DashboardRoutes.tsx
+import React, { lazy } from "react";
 import { Route } from "react-router-dom";
-
-import DashboardPage from "@src/pages/Dashboard";
 import AuthRequiredRoute from "./authRequiredRoute";
 
+const DashboardPage = lazy(() => import("@src/pages/Dashboard"));
 
 const DashboardRoutes = () => {
-	return <Route key="home" path="/dashboard" element={<AuthRequiredRoute><DashboardPage /></AuthRequiredRoute>} />;
+	return (
+		<>
+			<Route
+				key="dashboard"
+				path="/dashboard/*" // Include the wildcard '*' for nested routes
+				element={
+					<AuthRequiredRoute>
+						<DashboardPage />
+					</AuthRequiredRoute>
+				}
+			/>
+		</>
+	);
 };
 
 export default DashboardRoutes;

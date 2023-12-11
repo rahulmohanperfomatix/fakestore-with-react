@@ -20,3 +20,10 @@ export type FormField = {
         placeholder: string;
     };
 };
+
+export enum ErrorIdentifier {
+    FAILED_FETCH_PRODUCT_LIST = "Failed to fetch product list",
+    FAILED_FETCH_CATEGORY_LIST = "Failed to fetch category list"
+}
+
+export type ErrorCollection = { key: ErrorIdentifier, message: string}[];

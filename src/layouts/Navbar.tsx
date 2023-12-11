@@ -1,7 +1,13 @@
-import { darkTheme, lightTheme } from "@src/styles/theme";
 import React from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
+import { GiHamburgerMenu } from "react-icons/gi";
+
+import { authActions } from "@src/modules/auth/authSlice";
+import { darkTheme, lightTheme } from "@src/styles/theme";
+import { clearStorage } from "@src/utils/utils";
 
 type NavbarType = {
 	toggleSidebar: () => void;
@@ -18,13 +24,27 @@ const NavbarStyled = styled.nav<{isDark:boolean}>`
 	a{
 		color: #fff;
 	}
+
+	&.sticky {
+		position: sticky;
+		top: 0;
+	}
 `;
 
 const Navbar: React.FC<NavbarType> = ({toggleSidebar, isDark}) => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const onLogout = () => {
+		clearStorage();
+		clearStorage(true);
+		dispatch(authActions.clearState());
+		navigate("/login");
+	};
 	return (
-		<NavbarStyled isDark={isDark}>
+		<NavbarStyled isDark={isDark} className="sticky">
 			<button onClick={toggleSidebar}><GiHamburgerMenu  style={{ color: "white" }}/></button>
-			<a href="/logout">Logout</a>
+			<a onClick={onLogout}>Logout</a>
 		</NavbarStyled>
 	);
 };

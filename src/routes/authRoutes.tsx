@@ -1,14 +1,21 @@
-import React from "react";
-import { Route } from "react-router-dom";
+import React, { lazy } from "react";
+import { Navigate, Route } from "react-router-dom";
 
-import LoginPage from "@src/pages/LoginPage";
+import { useSelector } from "react-redux";
+import { RootState } from "@src/store";
+
 import withAuthCheck from "./withAuthCheck";
+
+const LoginPage = lazy(() => import("@src/pages/LoginPage"));
 
 const LoginPageWithAuthCheck = withAuthCheck(LoginPage);
 
-const AuthRoutes = () => [
-	<Route key="root" path="/" element={<LoginPageWithAuthCheck />} />,
-	<Route key="login" path="/login" element={<LoginPageWithAuthCheck />} />
-];
+const AuthRoutes = () => {
+	const isAuthenticated = useSelector((state: RootState) => state.auth.authSlice.isLoggedIn);
+	return	<>
+		<Route path="/" element={isAuthenticated ? <Navigate to="/dashboard"/> : <LoginPageWithAuthCheck />} />
+		<Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard"/> : <LoginPageWithAuthCheck />} />
+	</>;
+};
 
 export default AuthRoutes;
