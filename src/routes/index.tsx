@@ -5,14 +5,14 @@ import AuthRoutes from "./authRoutes";
 import DashboardRoutes from "./dashboardRoutes";
 
 const MainRoutes: React.FC = () => {
-	return (
-		<Suspense>
-			<Routes>
-				{ AuthRoutes() }
-				{ DashboardRoutes() }
-			</Routes>
-		</Suspense>
-	);
+  return (
+    <Suspense>
+      <Routes>
+        { AuthRoutes() }
+        { DashboardRoutes() }
+      </Routes>
+    </Suspense>
+  );
 };
 
 export default MainRoutes;

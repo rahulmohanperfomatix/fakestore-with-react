@@ -12,7 +12,7 @@ type SidebarType = {
 const SidebarStyled = styled.div<{ isOpen: boolean; isDark: boolean }>`
   width: 200px;
   background-color: ${(props) =>
-		!props.isDark ? lightTheme.primaryColor : darkTheme.primaryColor};
+    !props.isDark ? lightTheme.primaryColor : darkTheme.primaryColor};
   height: 100vh;
   position: fixed;
   transition: transform 0.3s ease;
@@ -30,49 +30,49 @@ const SidebarStyled = styled.div<{ isOpen: boolean; isDark: boolean }>`
     color: #fff;
     &:hover {
       background-color: ${(props) =>
-		!props.isDark ? lightTheme.secondaryLightColor : darkTheme.secondaryLightColor};
+    !props.isDark ? lightTheme.secondaryLightColor : darkTheme.secondaryLightColor};
     }
   }
 
   .nav-item {
     &.active {
       background-color: ${(props) =>
-		!props.isDark ? lightTheme.secondaryColor : darkTheme.secondaryColor};
+    !props.isDark ? lightTheme.secondaryColor : darkTheme.secondaryColor};
     }
   }
 `;
 
 const Sidebar: React.FC<SidebarType> = ({ isOpen, isDark }) => {
-	const navigate = useNavigate();
-	const [activePath, setActivePath] = useState(window.location.pathname);
+  const navigate = useNavigate();
+  const [activePath, setActivePath] = useState(window.location.pathname);
 
-	const handleNavigation = (path: string) => {
-		setActivePath(path);
-		navigate(path);
-	};
+  const handleNavigation = (path: string) => {
+    setActivePath(path);
+    navigate(path);
+  };
 
-	return (
-		<SidebarStyled isOpen={isOpen} isDark={isDark}>
-			<ul>
-				<li
-					className={`nav-item ${
-						(activePath === "/dashboard/products" || activePath === "/dashboard") ? "active" : ""
-					}`}
-					onClick={() => handleNavigation("/dashboard/products")}
-				>
+  return (
+    <SidebarStyled isOpen={isOpen} isDark={isDark}>
+      <ul>
+        <li
+          className={`nav-item ${
+            (activePath === "/dashboard/products" || activePath === "/dashboard") ? "active" : ""
+          }`}
+          onClick={() => handleNavigation("/dashboard/products")}
+        >
             Products
-				</li>
-				<li
-					className={`nav-item ${
-						activePath === "/dashboard/categories" ? "active" : ""
-					}`}
-					onClick={() => handleNavigation("/dashboard/categories")}
-				>
+        </li>
+        <li
+          className={`nav-item ${
+            activePath === "/dashboard/categories" ? "active" : ""
+          }`}
+          onClick={() => handleNavigation("/dashboard/categories")}
+        >
             Users
-				</li>
-			</ul>
-		</SidebarStyled>
-	);
+        </li>
+      </ul>
+    </SidebarStyled>
+  );
 };
 
 export default Sidebar;

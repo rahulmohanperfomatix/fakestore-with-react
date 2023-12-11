@@ -32,21 +32,21 @@ const NavbarStyled = styled.nav<{isDark:boolean}>`
 `;
 
 const Navbar: React.FC<NavbarType> = ({toggleSidebar, isDark}) => {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-	const onLogout = () => {
-		clearStorage();
-		clearStorage(true);
-		dispatch(authActions.clearState());
-		navigate("/login");
-	};
-	return (
-		<NavbarStyled isDark={isDark} className="sticky">
-			<button onClick={toggleSidebar}><GiHamburgerMenu  style={{ color: "white" }}/></button>
-			<a onClick={onLogout}>Logout</a>
-		</NavbarStyled>
-	);
+  const onLogout = () => {
+    clearStorage();
+    clearStorage(true);
+    dispatch(authActions.clearState());
+    navigate("/login");
+  };
+  return (
+    <NavbarStyled isDark={isDark} className="sticky">
+      <button onClick={toggleSidebar}><GiHamburgerMenu  style={{ color: "white" }}/></button>
+      <a onClick={onLogout}>Logout</a>
+    </NavbarStyled>
+  );
 };
 
 export default Navbar;

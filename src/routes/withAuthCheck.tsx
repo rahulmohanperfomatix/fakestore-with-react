@@ -6,17 +6,17 @@ import { RootState } from "@src/store";
 type WithAuthCheckProps = object;
 
 const withAuthCheck = <P extends WithAuthCheckProps>(WrappedComponent: ComponentType<P>) => {
-	const WithAuthCheckComponent: FC<P> = (props) => {
-		const isLoggedIn = useSelector((state: RootState) => state.auth.authSlice.isLoggedIn);
+  const WithAuthCheckComponent: FC<P> = (props) => {
+    const isLoggedIn = useSelector((state: RootState) => state.auth.authSlice.isLoggedIn);
 
-		if (isLoggedIn) {
-			return <Navigate to="/dashboard" replace />;
-		}
+    if (isLoggedIn) {
+      return <Navigate to="/dashboard" replace />;
+    }
 
-		return <WrappedComponent {...props} />;
-	};
+    return <WrappedComponent {...props} />;
+  };
 
-	return WithAuthCheckComponent;
+  return WithAuthCheckComponent;
 };
 
 export default withAuthCheck;

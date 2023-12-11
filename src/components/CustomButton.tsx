@@ -27,17 +27,17 @@ const StyledButton = styled.button<{$variant: "primary" | "secondary", $isDark: 
     `;
 
 const CustomButton: React.FC<CustomButtonProps> = ({ text, variant, isDark, classes, onCustomButtonClick }) => {    
-	const onClick = () => {
-		if (onCustomButtonClick) {
-			onCustomButtonClick();
-		}
-	};
+  const onClick = () => {
+    if (onCustomButtonClick) {
+      onCustomButtonClick();
+    }
+  };
 
-	return (
-		<div className={classes?.div}>
-			<StyledButton onClick={onClick} className={classes?.button} $variant={variant} $isDark={isDark}>{text}</StyledButton>
-		</div>
-	);
+  return (
+    <div className={classes?.div}>
+      <StyledButton onClick={onClick} className={classes?.button} $variant={variant} $isDark={isDark}>{text}</StyledButton>
+    </div>
+  );
 };
 
 export default CustomButton;

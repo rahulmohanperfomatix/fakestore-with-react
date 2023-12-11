@@ -7,10 +7,10 @@ type Sizes = {
 };
 
 const sizes: Sizes = {
-	sm: 576,
-	md: 768,
-	lg: 992,
-	xl: 1200,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
 };
 
 interface Media {
@@ -21,12 +21,12 @@ interface Media {
 }
 
 const media: Media = Object.keys(sizes).reduce((acc: Media, label: string) => {
-	acc[label] = (literals: TemplateStringsArray, ...placeholders: CSSProp[]) => css`
+  acc[label] = (literals: TemplateStringsArray, ...placeholders: CSSProp[]) => css`
     @media (min-width: ${sizes[label]}px) {
       ${css(literals, ...placeholders)}
     }
   `;
-	return acc;
+  return acc;
 }, {});
 
 
@@ -58,25 +58,25 @@ export const Col = styled.div<ColType>`
   max-width: 100%;
 
   ${(props) =>
-		props.sm &&
+    props.sm &&
     media.sm`
     flex: 0 0 ${props.sm}%;
     max-width: ${props.sm}%;
   `}
   ${(props) =>
-		props.md &&
+    props.md &&
     media.md`
     flex: 0 0 ${props.md}%;
     max-width: ${props.md}%;
   `}
   ${(props) =>
-		props.lg &&
+    props.lg &&
     media.lg`
     flex: 0 0 ${props.lg}%;
     max-width: ${props.lg}%;
   `}
   ${(props) =>
-		props.xl && media.xl`
+    props.xl && media.xl`
     flex: 0 0 ${props.xl}%;
     max-width: ${props.xl}%;
   `}
@@ -119,11 +119,11 @@ export const CardContainer = styled.div<{ $variant: CardProps["variant"], $isDar
 `;
 
 const variantStyles = (variant: CardProps["variant"]) => {
-	switch (variant) {
-	case "primary":
-		return css`background-color: ${lightTheme.primaryColor}; color: white;`;
-	case "secondary":
-		return css`
+  switch (variant) {
+  case "primary":
+    return css`background-color: ${lightTheme.primaryColor}; color: white;`;
+  case "secondary":
+    return css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -172,9 +172,9 @@ const variantStyles = (variant: CardProps["variant"]) => {
         }
     }
     `;
-	default:
-		return css``;
-	}
+  default:
+    return css``;
+  }
 };
 
 export type ChipsProps = {
@@ -184,24 +184,24 @@ export type ChipsProps = {
 }
 
 const variantChipStyles = (variant: ChipsProps["variant"], isDark: boolean) => {
-	switch(variant) {
-	case "primary": 
-		return css`
+  switch(variant) {
+  case "primary": 
+    return css`
     background-color: ${isDark ? darkTheme.secondaryColor : lightTheme.secondaryColor};
     color: ${isDark ? darkTheme.white : lightTheme.white};
   `;
-	case "reset": 
-		return css`
+  case "reset": 
+    return css`
       background-color: #f7f7f7;
       color: #333;
       border-radius: none;
     `;
-	case "default": 
-		return css`
+  case "default": 
+    return css`
       background-color: ${isDark ? darkTheme.primaryColor : lightTheme.primaryColor};
       color: ${isDark ? darkTheme.white : lightTheme.white};
     `;
-	}
+  }
 };
 
 export const StyledChip = styled.div<{$variant: ChipsProps["variant"], $isDark: boolean}>`

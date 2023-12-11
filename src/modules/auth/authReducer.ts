@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import authSlice from "./authSlice";
 
 const authReducer = combineReducers({
-	authSlice: authSlice
+  authSlice: authSlice
 });
 
 export default authReducer;

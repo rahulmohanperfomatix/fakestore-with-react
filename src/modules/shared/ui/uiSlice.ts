@@ -5,17 +5,17 @@ interface UIState {
 }
 
 const initialState: UIState = {
-	isLoading: false
+  isLoading: false
 };
 
 const uiSlice = createSlice({
-	name: "ui",
-	initialState,
-	reducers: {
-		setLoading: (state, action) => {
-			state.isLoading = action.payload;
-		}
-	}
+  name: "ui",
+  initialState,
+  reducers: {
+    setLoading: (state, action) => {
+      state.isLoading = action.payload;
+    }
+  }
 });
 
 export const { setLoading } = uiSlice.actions;

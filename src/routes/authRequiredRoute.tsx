@@ -7,9 +7,9 @@ type AuthRequiredRouteProps = {
 };
 
 const AuthRequiredRoute: React.FC<AuthRequiredRouteProps> = ({ children }) => {
-	const isAuthenticated = verifyAuthentication();
+  const isAuthenticated = verifyAuthentication();
 
-	return isAuthenticated ? children : <Navigate to="/login" />;
+  return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 export default AuthRequiredRoute;
