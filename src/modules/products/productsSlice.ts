@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "./productsModel";
-import { fetchCategories, fetchProductsList } from "./helper";
+import { fetchCategories, fetchProductsByCategory, fetchProductsList } from "./helper";
 import { ErrorCollection, ErrorIdentifier } from "@src/models/commonModels";
 
 interface ProductsState {
@@ -35,6 +35,13 @@ const productsSlice = createSlice({
 			_state.error = [
 				...(_state.error || []),
 				{ key: ErrorIdentifier.FAILED_FETCH_PRODUCT_LIST, message: _action.payload?.message || "Failed to fetch categories" }
+			];
+		}).addCase(fetchProductsByCategory.fulfilled, (_state, _action) => {
+			_state.productsList = _action.payload;
+		}).addCase(fetchProductsByCategory.rejected, (_state, _action) => {
+			_state.error = [
+				...(_state.error || []),
+				{ key: ErrorIdentifier.FAILED_FETCH_PRODUCT_LIST, message: _action.payload?.message || "Failed to fetch products" }
 			];
 		});
 	},

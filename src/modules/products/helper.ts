@@ -41,3 +41,21 @@ export const fetchCategories = createAsyncThunk<
 		return rejectWithValue(handleAxiosError(error));
 	}
 });
+
+export const fetchProductsByCategory = createAsyncThunk<
+  Product[],
+  string,
+  { rejectValue: ErrorResponse }
+>(ApiEndpoints.CATEGORY, async (category, { dispatch, rejectWithValue }) => {
+	try {
+		dispatch(setLoading(true));
+		const response = await instance.get(
+			`${ApiEndpoints.CATEGORY}/${category}`
+		);
+		dispatch(setLoading(false));
+		return response.data;
+	} catch (error) {
+		dispatch(setLoading(false));
+		return rejectWithValue(handleAxiosError(error));
+	}
+});
