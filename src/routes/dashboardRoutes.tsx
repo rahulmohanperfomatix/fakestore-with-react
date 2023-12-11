@@ -10,7 +10,7 @@ const DashboardRoutes = () => {
     <>
       <Route
         key="dashboard"
-        path="/dashboard/*" // Include the wildcard '*' for nested routes
+        path="/dashboard/*"
         element={
           <AuthRequiredRoute>
             <DashboardPage />
