@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { AuthDetailsAfterLogin } from "./authModels";
 import { setLoading } from "../shared/ui/uiSlice";
@@ -31,6 +31,9 @@ const authSlice = createSlice({
         username: "",
         error: ""
       };
+    },
+    setLoggedIn: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedIn = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -52,6 +55,8 @@ const authSlice = createSlice({
     });
   }
 });
+
+export const { setLoggedIn } = authSlice.actions;
 
 export const { actions: authActions} = authSlice;
 

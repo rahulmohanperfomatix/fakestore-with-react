@@ -3,7 +3,7 @@ import { ErrorResponse, handleAxiosError } from "@src/api/apiUtils";
 import instance from "@src/api/axios";
 import { ApiEndpoints } from "@src/enums/apiEndpoints";
 import { setLoading } from "../shared/ui/uiSlice";
-import { Product } from "./productsModel";
+import { ActionType, Product, ProductDetails } from "./productsModel";
 
 export const fetchProductsList = createAsyncThunk<
   Product[],
@@ -11,7 +11,7 @@ export const fetchProductsList = createAsyncThunk<
   {
     rejectValue: ErrorResponse;
   }
->(ApiEndpoints.PRODUCTS, async (_, { dispatch, rejectWithValue }) => {
+>(ActionType.FETCH_PRODUCT_LIST, async (_, { dispatch, rejectWithValue }) => {
   try {
     dispatch(setLoading(true));
     const response = await instance.get(ApiEndpoints.PRODUCTS);
@@ -30,7 +30,7 @@ export const fetchCategories = createAsyncThunk<
   {
     rejectValue: ErrorResponse;
   }
->(ApiEndpoints.CATEGORIES, async (_, { dispatch, rejectWithValue }) => {
+>(ActionType.FETCH_CATEGORIES, async (_, { dispatch, rejectWithValue }) => {
   try {
     dispatch(setLoading(true));
     const response = await instance.get(ApiEndpoints.CATEGORIES);
@@ -46,12 +46,28 @@ export const fetchProductsByCategory = createAsyncThunk<
   Product[],
   string,
   { rejectValue: ErrorResponse }
->(ApiEndpoints.CATEGORY, async (category, { dispatch, rejectWithValue }) => {
+>(ActionType.FETCH_PRODUCT_DETAILS, async (category, { dispatch, rejectWithValue }) => {
   try {
     dispatch(setLoading(true));
     const response = await instance.get(
       `${ApiEndpoints.CATEGORY}/${category}`
     );
+    dispatch(setLoading(false));
+    return response.data;
+  } catch (error) {
+    dispatch(setLoading(false));
+    return rejectWithValue(handleAxiosError(error));
+  }
+});
+
+export const fetchProductById = createAsyncThunk<
+  ProductDetails,
+  string,
+  { rejectValue: ErrorResponse}
+>(ApiEndpoints.PRODUCTS, async (productId, { dispatch, rejectWithValue }) => {
+  try {
+    dispatch(setLoading(true));
+    const response = await instance.get(`${ApiEndpoints.PRODUCTS}/${productId}`);
     dispatch(setLoading(false));
     return response.data;
   } catch (error) {
