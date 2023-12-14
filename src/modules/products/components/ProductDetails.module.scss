@@ -1,0 +1,25 @@
+.productDetail {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+  
+  .productImage {
+    max-width: 300px;
+    margin-right: 20px;
+  }
+  
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .price {
+    color: green;
+    font-size: 1.5em;
+  }
+  
+  .category, .rating {
+    margin-top: 10px;
+  }
+  

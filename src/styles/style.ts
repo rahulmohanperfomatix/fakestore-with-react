@@ -216,3 +216,36 @@ export const StyledChip = styled.div<{$variant: ChipsProps["variant"], $isDark: 
     cursor: pointer;
   }
 `;
+
+export const getButtonStyle = (variant = "primary", isDark: boolean) => {
+  const backgroundColor = isDark && variant ==="primary" ? darkTheme?.primaryColor : lightTheme?.primaryColor;
+  return css`
+    background-color: ${backgroundColor};
+    &:hover {
+      background-color: ${backgroundColor};
+    }
+  `;
+};
+
+export const ActionButton = styled.button<{$variant: "primary", $isDark: boolean}>`
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  ${props => getButtonStyle(props.$variant, props.$isDark)}
+`;
+
+export const TextButton = styled.button`
+  background: none;
+  border: none;
+  color: ${lightTheme.primaryColor};
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 5px 10px;
+  
+  &:hover {
+    color: ${lightTheme.primaryColor};
+  }
+`;

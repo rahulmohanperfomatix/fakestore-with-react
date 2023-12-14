@@ -23,7 +23,8 @@ export type FormField = {
 
 export enum ErrorIdentifier {
     FAILED_FETCH_PRODUCT_LIST = "Failed to fetch product list",
-    FAILED_FETCH_CATEGORY_LIST = "Failed to fetch category list"
+    FAILED_FETCH_CATEGORY_LIST = "Failed to fetch category list",
+    FAILED_FETCH_PRODUCT_DETAILS = "Failed to fetch product details"
 }
 
 export type ErrorCollection = { key: ErrorIdentifier, message: string}[];
