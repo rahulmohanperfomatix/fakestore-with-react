@@ -115,7 +115,9 @@ export const CardContainer = styled.div<{ $variant: CardProps["variant"], $isDar
     &:hover {
         box-shadow:${props => props.$isDark ? "0 4px 8px 0 rgba(255,255,255,0.3)" : "0 4px 8px 0 rgba(0,0,0,0.3)"};
     }
-
+    @media screen and (max-width: 768px) {
+      width: auto;
+    }
 `;
 
 const variantStyles = (variant: CardProps["variant"]) => {
@@ -210,6 +212,7 @@ export const StyledChip = styled.div<{$variant: ChipsProps["variant"], $isDark: 
   display: inline-block;
   font-size: 0.875rem;
   margin: 5px;
+  white-space: nowrap;
   ${({ $variant, $isDark }) => variantChipStyles($variant || "default", $isDark)}
 
   &:hover {
