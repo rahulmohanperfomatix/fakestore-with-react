@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { loginFormFieldArray } from "@src/modules/auth/constants";
 import { LoginFormControlsAndErrors } from "@src/modules/auth/authModels";
 import { CustomButtonVariantEnum, FormErrorTypeEnum } from "@src/enums/common";
@@ -51,6 +54,8 @@ const Login = () => {
     const hasError = validateSubmission();
     if(!hasError){
       dispatch(loginUser(loginForm.formFields));
+      toast("Login Successful.");
+      console.log("wow");
       setLoginForm((prevState) => {
         return {
           ...prevState,
@@ -115,14 +120,17 @@ const Login = () => {
     }));
   };
   return (
-    <form onSubmit={($event) => onSubmit($event)}>
-      {loginFormFieldArray.map((formData, index) => {
-        return <div key={index} className={`${formData.classes.containerClasses}`}>
-          <Input attributes={{...formData.attributes}} controlName={formData.controlName} label={formData.label} valueIn={loginForm.formFields[formData.controlName as keyof typeof loginFormControlsAndErrors.formFields]} error={loginForm.formErrors[formData.controlName as keyof typeof loginFormControlsAndErrors.formErrors]} emitValueToParent={onInputChange} emitErrorToParent={(controlName, error) => setControlFieldError(controlName, error)}/>
-        </div>;
-      })}
-      <CustomButton classes={{div: "text-center mt-10", button: "w-100"}} text="Login" variant={CustomButtonVariantEnum.PRIMARY} isDark={false}/>
-    </form>
+    <div>
+      <form onSubmit={($event) => onSubmit($event)}>
+        {loginFormFieldArray.map((formData, index) => {
+          return <div key={index} className={`${formData.classes.containerClasses}`}>
+            <Input attributes={{...formData.attributes}} controlName={formData.controlName} label={formData.label} valueIn={loginForm.formFields[formData.controlName as keyof typeof loginFormControlsAndErrors.formFields]} error={loginForm.formErrors[formData.controlName as keyof typeof loginFormControlsAndErrors.formErrors]} emitValueToParent={onInputChange} emitErrorToParent={(controlName, error) => setControlFieldError(controlName, error)}/>
+          </div>;
+        })}
+        <CustomButton classes={{div: "text-center mt-10", button: "w-100"}} text="Login" variant={CustomButtonVariantEnum.PRIMARY} isDark={false}/>
+      </form>
+      <ToastContainer />
+    </div>
   );
 };
 
