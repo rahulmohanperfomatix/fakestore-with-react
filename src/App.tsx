@@ -8,6 +8,7 @@ import { AppDispatch, RootState } from "./store";
 import Loader from "./components/Loader";
 import { getItem } from "./utils/utils";
 import { setLoggedIn } from "./modules/auth/authSlice";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const isLoading = useSelector((state: RootState) => state.ui.isLoading);
@@ -21,6 +22,7 @@ function App() {
     <Router>
       {isLoading && <Loader />}
       <MainRoutes />
+      <ToastContainer />
     </Router>
   );
 }

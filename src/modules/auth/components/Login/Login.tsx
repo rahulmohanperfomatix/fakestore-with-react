@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { loginFormFieldArray } from "@src/modules/auth/constants";
@@ -54,8 +53,6 @@ const Login = () => {
     const hasError = validateSubmission();
     if(!hasError){
       dispatch(loginUser(loginForm.formFields));
-      toast("Login Successful.");
-      console.log("wow");
       setLoginForm((prevState) => {
         return {
           ...prevState,
@@ -129,7 +126,6 @@ const Login = () => {
         })}
         <CustomButton classes={{div: "text-center mt-10", button: "w-100"}} text="Login" variant={CustomButtonVariantEnum.PRIMARY} isDark={false}/>
       </form>
-      <ToastContainer />
     </div>
   );
 };
